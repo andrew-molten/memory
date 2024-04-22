@@ -30,14 +30,14 @@ const images = [
 ]
 
 const tilesDOM = document.getElementsByClassName('tile')
-let playingTiles = []
+let playingImages = []
+let tileNum = 18
 
 function giveIDsToDom() {
   for (let i = 0; i < tilesDOM.length; i++) {
     tilesDOM[i].id = i
   }
 }
-giveIDsToDom()
 
 // choose tiles *2
 function chooseImages(imageSet, tileNum) {
@@ -51,15 +51,22 @@ function chooseImage(imageSet, imageNum) {
   const index = getRandomInt(0, imageNum)
   const image = imageSet[index]
   // check image isn't doubled
-  if (!playingTiles.includes(image)) {
-    playingTiles.push(image)
+  if (!playingImages.includes(image)) {
+    playingImages.push(image)
     return image
   } else return chooseImage(imageSet, imageNum)
 }
 
-chooseImages(images, 18)
+function assignTiles(tileNum) {
+  for (const image of playingImages) {
+    const markup = createTileMarkup(image.location)
+    tilesDOM[0].innerHTML = markup
+  }
+}
 
-function assignTiles() {}
+function createTileMarkup(image) {
+  return `<img src="${image}" class="hidden" />`
+}
 
 function getRandomInt(min, max) {
   const minCeiled = Math.ceil(min)
@@ -67,6 +74,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled) // max & min inclusive
 }
 
+function init() {
+  giveIDsToDom()
+  chooseImages(images, tileNum)
+  assignTiles(tileNum)
+}
+init()
 // assign tiles to random positions on the screen
 
 // check for a match & remove tile/ do a celebration

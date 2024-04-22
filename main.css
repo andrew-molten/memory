@@ -14,11 +14,22 @@ body {
   width: 100vw;
 }
 
+img {
+  /* width: 100%; */
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  margin-left: 50%;
+  margin-top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .tile {
   background-color: rgb(254, 104, 197);
   height: 100px;
   width: 100px;
   margin: 10px;
+  overflow: hidden;
 }
 
 .container {
