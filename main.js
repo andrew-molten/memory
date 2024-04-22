@@ -78,7 +78,7 @@ function removeCompletedPair() {
   const tile = document.getElementById(lastClick.id)
   const src = tile.children[0].src
   for (const image of tilesDOM) {
-    if (image.children) {
+    if (image.children.length > 0) {
       if (src === image.children[0].src) {
         image.innerHTML = ''
         image.classList.add('hidden')
@@ -87,6 +87,7 @@ function removeCompletedPair() {
   }
   lastClick.src = ''
   lastClick.id = ''
+  lastClick.completedPair = false
 }
 
 function assignLastClick(src, id) {
@@ -96,7 +97,7 @@ function assignLastClick(src, id) {
 
 function hideAll() {
   for (const tile of tilesDOM) {
-    tile.children[0].classList.add('hidden')
+    tile.children.length > 0 ? tile.children[0].classList.add('hidden') : ''
   }
 }
 
