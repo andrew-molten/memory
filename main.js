@@ -1,9 +1,67 @@
 // add a list of possible tiles
-const tiles = [{url: images/memory/alberto.jpg}, {url:images/memory/anna-ute.jpg}, {url:images/memory/anna.jpg}, {url:images/memory/bingo.jpg}, {url:images/memory/bluey.jpg}, {url:images/memory/gran-mala.jpg}, {url:images/memory/gran.jpg}, {url:images/memory/luca.jpg}, {url:images/memory/mala-andrew-crumpets.jpg}, {url:images/memory/mala-emmie.jpg}, {url:images/memory/mala-emmy.jpg}, {url:images/memory/mala-imogen.jpg}, {url:images/memory/mala-kiba.jpg}, {url:images/memory/mala-kiba2.jpg}, {url:images/memory/mala-pony.jpg}, {url:images/memory/mala-thomas-climbing.jpg}, {url:images/memory/mala-thomas.jpg}, {url:images/memory/mama-papa.jpg}, {url:images/memory/moana.jpg}, {url:images/memory/monkey-tongue.jpg}, {url:/home/andrew/devacademy/personal-projects/memory/images/memory/oma-eis.jpg}, {url:images/memory/oma-tilo.jpg}, {url:images/memory/omi-mala.jpg}, {url:images/memory/opa-dressup.jpg}, {url:images/memory/sheep.jpg}, {url:images/memory/tilo.jpg}, {url:images/memory/triceratops.png}]
+const images = [
+  { location: 'images/memory/alberto.jpg' },
+  { location: 'images/memory/anna-ute.jpg' },
+  { location: 'images/memory/anna.jpg' },
+  { location: 'images/memory/bingo.jpg' },
+  { location: 'images/memory/bluey.jpg' },
+  { location: 'images/memory/gran-mala.jpg' },
+  { location: 'images/memory/gran.jpg' },
+  { location: 'images/memory/luca.jpg' },
+  { location: 'images/memory/mala-andrew-crumpets.jpg' },
+  { location: 'images/memory/mala-emmie.jpg' },
+  { location: 'images/memory/mala-emmy.jpg' },
+  { location: 'images/memory/mala-imogen.jpg' },
+  { location: 'images/memory/mala-kiba.jpg' },
+  { location: 'images/memory/mala-kiba2.jpg' },
+  { location: 'images/memory/mala-pony.jpg' },
+  { location: 'images/memory/mala-thomas-climbing.jpg' },
+  { location: 'images/memory/mala-thomas.jpg' },
+  { location: 'images/memory/mama-papa.jpg' },
+  { location: 'images/memory/moana.jpg' },
+  { location: 'images/memory/monkey-tongue.jpg' },
+  { location: '/images/memory/oma-eis.jpg' },
+  { location: 'images/memory/oma-tilo.jpg' },
+  { location: 'images/memory/omi-mala.jpg' },
+  { location: 'images/memory/opa-dressup.jpg' },
+  { location: 'images/memory/sheep.jpg' },
+  { location: 'images/memory/tilo.jpg' },
+  { location: 'images/memory/triceratops.png' },
+]
 
-// create a tile object
+const tilesDOM = document.getElementsByClassName('tile')
+let playingTiles = []
 
-// choose the number of tiles for the game
+// choose tiles *2
+function chooseImages(imageSet, tileNum) {
+  const imageNum = tileNum / 2
+  for (let i = 0; i < imageNum; i++) {
+    chooseImage(imageSet, tileNum)
+  }
+}
+
+function chooseImage(imageSet, imageNum) {
+  const index = getRandomInt(0, imageNum)
+  const image = imageSet[index]
+  // check image isn't doubled
+  if (!playingTiles.includes(image)) {
+    playingTiles.push(image)
+    return image
+  } else return chooseImage(imageSet, imageNum)
+}
+
+chooseImages(images, 18)
+// console.log(images)
+
+// for(const tile of tilesDOM) {
+//   // assign a random image
+// }
+
+function getRandomInt(min, max) {
+  const minCeiled = Math.ceil(min)
+  const maxFloored = Math.floor(max)
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled) // max & min inclusive
+}
 
 // assign tiles to random positions on the screen
 
