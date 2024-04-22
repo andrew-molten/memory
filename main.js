@@ -39,6 +39,67 @@ function giveIDsToDom() {
   }
 }
 
+function assignTileListeners() {
+  for (const tile of tilesDOM) {
+    tile.addEventListener('click', handleClick)
+  }
+}
+let lastClick = { src: '', id: '', clickNum: 2, completedPair: false }
+
+function handleClick(e) {
+  const id = e.target.closest('.tile').id
+  const src = e.target.children[0].src
+  const tile = document.getElementById(id)
+  console.log(lastClick)
+  if (lastClick.clickNum === 2) {
+    if (lastClick.completedPair === true) {
+      removeCompletedPair()
+    } else hideAll()
+    assignLastClick(src, id)
+    lastClick.clickNum = 1
+    tile.children[0].classList.remove('hidden')
+  } else if (lastClick.src === src && lastClick.id !== id) {
+    completedPair(tile)
+  } else {
+    assignLastClick(src, id)
+    tile.children[0].classList.remove('hidden')
+    lastClick.clickNum++
+  }
+}
+
+function completedPair(tile) {
+  tile.children[0].classList.remove('hidden')
+  console.log('Wooohoo')
+  lastClick.clickNum++
+  lastClick.completedPair = true
+}
+
+function removeCompletedPair() {
+  const tile = document.getElementById(lastClick.id)
+  const src = tile.children[0].src
+  for (const image of tilesDOM) {
+    if (image.children) {
+      if (src === image.children[0].src) {
+        image.innerHTML = ''
+        image.classList.add('hidden')
+      }
+    }
+  }
+  lastClick.src = ''
+  lastClick.id = ''
+}
+
+function assignLastClick(src, id) {
+  lastClick.src = src
+  lastClick.id = id
+}
+
+function hideAll() {
+  for (const tile of tilesDOM) {
+    tile.children[0].classList.add('hidden')
+  }
+}
+
 // choose tiles *2
 function chooseImages(imageSet, tileNum) {
   const imageNum = tileNum / 2
@@ -88,6 +149,7 @@ function init() {
   giveIDsToDom()
   chooseImages(images, tileNum)
   assignTiles(tileNum)
+  assignTileListeners()
 }
 init()
 // assign tiles to random positions on the screen
