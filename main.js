@@ -32,6 +32,13 @@ const images = [
 const tilesDOM = document.getElementsByClassName('tile')
 let playingTiles = []
 
+function giveIDsToDom() {
+  for (let i = 0; i < tilesDOM.length; i++) {
+    tilesDOM[i].id = i
+  }
+}
+giveIDsToDom()
+
 // choose tiles *2
 function chooseImages(imageSet, tileNum) {
   const imageNum = tileNum / 2
@@ -51,11 +58,8 @@ function chooseImage(imageSet, imageNum) {
 }
 
 chooseImages(images, 18)
-// console.log(images)
 
-// for(const tile of tilesDOM) {
-//   // assign a random image
-// }
+function assignTiles() {}
 
 function getRandomInt(min, max) {
   const minCeiled = Math.ceil(min)
