@@ -1,4 +1,5 @@
 // add a list of possible tiles
+const tiles = [{}]
 
 // create a tile object
 
