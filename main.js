@@ -60,8 +60,18 @@ function chooseImage(imageSet, imageNum) {
 function assignTiles(tileNum) {
   for (const image of playingImages) {
     const markup = createTileMarkup(image.location)
-    tilesDOM[0].innerHTML = markup
+    const indexOne = getRandomTile()
+    tilesDOM[indexOne].innerHTML = markup
+    const indexTwo = getRandomTile()
+    tilesDOM[indexTwo].innerHTML = markup
   }
+}
+
+function getRandomTile() {
+  const index = getRandomInt(0, tileNum - 1)
+  if (tilesDOM[index].innerHTML === '') {
+    return index
+  } else return getRandomTile()
 }
 
 function createTileMarkup(image) {
@@ -85,3 +95,5 @@ init()
 // check for a match & remove tile/ do a celebration
 
 // count matches
+
+// check whether the image is bigger horizontally or vertically to decied which size to select by
