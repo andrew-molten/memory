@@ -1,3 +1,4 @@
+const container = document.getElementById('container')
 // add a list of possible tiles
 const images = [
   { location: 'images/memory/alberto.jpg' },
@@ -29,9 +30,22 @@ const images = [
   { location: 'images/memory/triceratops.png' },
 ]
 
+let preferences = {
+  tileNum: 12,
+}
+
+function generateTilesDOM(tileNum) {
+  const individualTileMarkup = `<div class="tile"></div>`
+  let totalTileMarkup = ''
+  for (let i = 0; i < tileNum; i++) {
+    totalTileMarkup += individualTileMarkup
+  }
+  container.innerHTML = totalTileMarkup
+}
+
 const tilesDOM = document.getElementsByClassName('tile')
 let playingImages = []
-let tileNum = 18
+// let tileNum = 18
 
 function giveIDsToDom() {
   for (let i = 0; i < tilesDOM.length; i++) {
@@ -130,7 +144,7 @@ function assignTiles(tileNum) {
 }
 
 function getRandomTile() {
-  const index = getRandomInt(0, tileNum - 1)
+  const index = getRandomInt(0, preferences.tileNum - 1)
   if (tilesDOM[index].innerHTML === '') {
     return index
   } else return getRandomTile()
@@ -147,9 +161,10 @@ function getRandomInt(min, max) {
 }
 
 function init() {
+  generateTilesDOM(preferences.tileNum)
   giveIDsToDom()
-  chooseImages(images, tileNum)
-  assignTiles(tileNum)
+  chooseImages(images, preferences.tileNum)
+  assignTiles(preferences.tileNum)
   assignTileListeners()
 }
 init()
