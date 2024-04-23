@@ -1,6 +1,9 @@
 import confetti from 'https://cdn.skypack.dev/canvas-confetti'
-
 const container = document.getElementById('container')
+
+//////////////////////////////////////////////
+/////////////////// TILES ////////////////////
+//////////////////////////////////////////////
 // add a list of possible tiles
 const images = [
   { location: 'images/memory/alberto.jpg' },
@@ -88,6 +91,10 @@ function completedPair(tile) {
   lastClick.completedPair = true
   chooseConfetti()
 }
+
+//////////////////////////////////////////////
+///////////////  CONFETTI  ///////////////////
+//////////////////////////////////////////////
 const scalar = 2.5
 const rainbow = confetti.shapeFromText({ text: '🌈', scalar })
 const heart = confetti.shapeFromText({ text: '❤️', scalar })
@@ -205,6 +212,9 @@ init()
 
 // count matches
 
+//////////////////////////////////////////////
+///////////////  CONFETTI  ///////////////////
+//////////////////////////////////////////////
 // check whether the image is bigger horizontally or vertically to decied which size to select by
 function calculateTiles() {
   const height = window.innerHeight
@@ -213,10 +223,6 @@ function calculateTiles() {
   const heightFit = height / 120
   const maxTiles = maxTileNum(widthFit, heightFit)
   const tileWidth = width / 3 - 20
-  // console.log(widthFit)
-  // console.log(heightFit)
-  // console.log(tileWidth)
-  // console.log(maxTiles)
   adjustTileSize(tileWidth)
 }
 calculateTiles()
