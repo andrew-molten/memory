@@ -31,7 +31,7 @@ const images = [
 ]
 
 let preferences = {
-  tileNum: 12,
+  tileNum: 18,
 }
 
 function generateTilesDOM(tileNum) {
@@ -64,7 +64,6 @@ function handleClick(e) {
   const id = e.target.closest('.tile').id
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
-  console.log(lastClick)
   if (lastClick.clickNum === 2) {
     if (lastClick.completedPair === true) {
       removeCompletedPair()
@@ -168,6 +167,40 @@ function init() {
   assignTileListeners()
 }
 init()
+
+function calculateTiles() {
+  const height = window.innerHeight
+  const width = window.innerWidth
+  const widthFit = width / 120
+  const heightFit = height / 120
+  const maxTiles = maxTileNum(widthFit, heightFit)
+  const tileWidth = width / 3 - 20
+  console.log(widthFit)
+  console.log(heightFit)
+  console.log(tileWidth)
+  console.log(maxTiles)
+  adjustTileSize(tileWidth)
+}
+calculateTiles()
+
+function maxTileNum(widthFit, heightFit) {
+  const max = Math.floor(widthFit) * Math.floor(heightFit)
+  if (max % 6 === 0) {
+    return max
+  } else {
+    const remainder = max % 6
+    return max - remainder
+  }
+}
+
+function adjustTileSize(tileWidth) {
+  for (const tile of tilesDOM) {
+    tile.style.maxWidth = `${tileWidth}px`
+    tile.style.maxHeight = `${tileWidth}px`
+    tile.style.height = `${tileWidth}px`
+    tile.style.weight = `${tileWidth}px`
+  }
+}
 // assign tiles to random positions on the screen
 
 // check for a match & remove tile/ do a celebration
