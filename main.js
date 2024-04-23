@@ -219,9 +219,9 @@ init()
 function calculateTiles() {
   // Finds out which length is longer
   // const height = window.innerHeight
-  const height = document.getElementsByTagName('body')[0].clientHeight
+  const height = document.body.clientHeight
   // const width = window.innerWidth
-  const width = document.getElementsByTagName('body')[0].clientWidth
+  const width = document.body.clientWidth
   let shortWay
   let longWay
   height > width ? (shortWay = width) : (shortWay = height)
