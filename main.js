@@ -31,7 +31,7 @@ const images = [
 ]
 
 let preferences = {
-  tileNum: 18,
+  tileNum: 14,
 }
 
 function generateTilesDOM(tileNum) {
@@ -64,7 +64,6 @@ function handleClick(e) {
   const id = e.target.closest('.tile').id
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
-  console.log(lastClick)
   if (lastClick.clickNum === 2) {
     if (lastClick.completedPair === true) {
       removeCompletedPair()
@@ -178,14 +177,14 @@ init()
 function calculateTiles() {
   const height = window.innerHeight
   const width = window.innerWidth
-  const widthFit = width / 120
+  const widthFit = (width - 20) / 120
   const heightFit = height / 120
   const maxTiles = maxTileNum(widthFit, heightFit)
   const tileWidth = width / 3 - 20
-  console.log(widthFit)
-  console.log(heightFit)
-  console.log(tileWidth)
-  console.log(maxTiles)
+  // console.log(widthFit)
+  // console.log(heightFit)
+  // console.log(tileWidth)
+  // console.log(maxTiles)
   adjustTileSize(tileWidth)
 }
 calculateTiles()
