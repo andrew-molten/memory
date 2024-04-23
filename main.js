@@ -213,19 +213,32 @@ init()
 // count matches
 
 //////////////////////////////////////////////
-///////////////  CONFETTI  ///////////////////
+///////////////  TILE SIZE ///////////////////
 //////////////////////////////////////////////
-// check whether the image is bigger horizontally or vertically to decied which size to select by
 function calculateTiles() {
+  // Finds out which length is longer
   const height = window.innerHeight
   const width = window.innerWidth
-  const widthFit = (width - 20) / 120
-  const heightFit = height / 120
-  const maxTiles = maxTileNum(widthFit, heightFit)
-  const tileWidth = width / 3 - 20
-  adjustTileSize(tileWidth)
+  let shortWay
+  let longWay
+  height > width ? (shortWay = width) : (shortWay = height)
+  height < width ? (longWay = width) : (longWay = height)
+
+  // calculate length to fit
+  const tileShort = shortWay / 3 - 20
+  const tileLong = longWay / 5 - 30 // number of lines in each direction 5 & 3
+  const squareScreenTile = longWay / 4 - 25
+
+  // assigns tile nsize to fit viewport
+  if (shortWay > 0.85 * longWay) {
+    adjustTileSize(squareScreenTile) // square screen
+  } else {
+    tileShort < tileLong ? adjustTileSize(tileShort) : adjustTileSize(tileLong)
+  }
 }
 calculateTiles()
+
+// if 348 /417 - these kind of dimensions then we would want 4 lines
 
 function maxTileNum(widthFit, heightFit) {
   const max = Math.floor(widthFit) * Math.floor(heightFit)
