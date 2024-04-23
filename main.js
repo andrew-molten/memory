@@ -66,6 +66,7 @@ function assignTileListeners() {
 let lastClick = { src: '', id: '', clickNum: 2, completedPair: false }
 
 function handleClick(e) {
+  confetti()
   const id = e.target.closest('.tile').id
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
@@ -218,16 +219,13 @@ init()
 //////////////////////////////////////////////
 function calculateTiles() {
   // Finds out which length is longer
-  // const height = window.innerHeight
+
   const height = document.body.clientHeight
-  // const width = window.innerWidth
   const width = document.body.clientWidth
   let shortWay
   let longWay
   height > width ? (shortWay = width) : (shortWay = height)
   height < width ? (longWay = width) : (longWay = height)
-  console.log(height)
-  console.log(width)
 
   // calculate length to fit
   const tileShort = shortWay / 3 - 20
@@ -261,4 +259,19 @@ function adjustTileSize(tileWidth) {
     tile.style.height = `${tileWidth}px`
     tile.style.width = `${tileWidth}px`
   }
+}
+
+// Confetti
+const confettiContainer = document.querySelector('.confetti')
+
+function confetti() {
+  confettiContainer.classList.add('explosion')
+
+  confettiContainer.addEventListener(
+    'animationend',
+    () => {
+      confettiContainer.classList.remove('explosion')
+    },
+    { once: true }
+  )
 }
