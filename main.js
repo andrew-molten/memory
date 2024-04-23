@@ -200,6 +200,7 @@ function getRandomInt(min, max) {
 
 function init() {
   generateTilesDOM(preferences.tileNum)
+  calculateTiles()
   giveIDsToDom()
   chooseImages(images, preferences.tileNum)
   assignTiles(preferences.tileNum)
@@ -225,8 +226,8 @@ function calculateTiles() {
   let longWay
   height > width ? (shortWay = width) : (shortWay = height)
   height < width ? (longWay = width) : (longWay = height)
-  // console.log(clientHeight)
-  // console.log(clientWidth)
+  console.log(height)
+  console.log(width)
 
   // calculate length to fit
   const tileShort = shortWay / 3 - 20
@@ -240,7 +241,6 @@ function calculateTiles() {
     tileShort < tileLong ? adjustTileSize(tileShort) : adjustTileSize(tileLong)
   }
 }
-calculateTiles()
 
 // if 348 /417 - these kind of dimensions then we would want 4 lines
 
