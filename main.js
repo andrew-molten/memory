@@ -1,5 +1,6 @@
 // import confetti from 'https://cdn.skypack.dev/canvas-confetti'
 const container = document.getElementById('container')
+import confetti from 'canvas-confetti'
 
 //////////////////////////////////////////////
 /////////////////// TILES ////////////////////
@@ -89,42 +90,42 @@ function completedPair(tile) {
   tile.children[0].classList.remove('hidden')
   lastClick.clickNum++
   lastClick.completedPair = true
-  // chooseConfetti()
+  chooseConfetti()
 }
 
 //////////////////////////////////////////////
 ///////////////  CONFETTI  ///////////////////
 //////////////////////////////////////////////
-// const scalar = 2.5
-// const rainbow = confetti.shapeFromText({ text: '🌈', scalar })
-// const heart = confetti.shapeFromText({ text: '❤️', scalar })
-// const unicorn = confetti.shapeFromText({ text: '🦄', scalar })
+const scalar = 2.5
+const rainbow = confetti.shapeFromText({ text: '🌈', scalar })
+const heart = confetti.shapeFromText({ text: '❤️', scalar })
+const unicorn = confetti.shapeFromText({ text: '🦄', scalar })
 
-// const confettiOptions = {
-//   particleCount: 1000,
-//   spread: 100,
-//   origin: {
-//     y: 0.7,
-//   },
-//   gravity: 0.7,
-//   ticks: 200,
-// }
-// const confettiOptionsEmoji = {
-//   particleCount: 400,
-//   spread: 90,
-//   origin: {
-//     y: 0.7,
-//   },
-//   gravity: 1,
-//   scalar: scalar,
-//   shapes: [heart, rainbow, unicorn],
-//   ticks: 100,
-// }
+const confettiOptions = {
+  particleCount: 1000,
+  spread: 100,
+  origin: {
+    y: 0.7,
+  },
+  gravity: 0.7,
+  ticks: 200,
+}
+const confettiOptionsEmoji = {
+  particleCount: 400,
+  spread: 90,
+  origin: {
+    y: 0.7,
+  },
+  gravity: 1,
+  scalar: scalar,
+  shapes: [heart, rainbow, unicorn],
+  ticks: 100,
+}
 
-// function chooseConfetti() {
-//   const randomNum = getRandomInt(1, 2)
-//   randomNum === 1 ? confetti(confettiOptions) : confetti(confettiOptionsEmoji)
-// }
+function chooseConfetti() {
+  const randomNum = getRandomInt(1, 2)
+  randomNum === 1 ? confetti(confettiOptions) : confetti(confettiOptionsEmoji)
+}
 
 function removeCompletedPair() {
   const tile = document.getElementById(lastClick.id)
