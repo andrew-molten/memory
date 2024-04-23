@@ -1,3 +1,5 @@
+import confetti from 'https://cdn.skypack.dev/canvas-confetti'
+
 const container = document.getElementById('container')
 // add a list of possible tiles
 const images = [
@@ -85,6 +87,61 @@ function completedPair(tile) {
   console.log('Wooohoo')
   lastClick.clickNum++
   lastClick.completedPair = true
+  chooseConfetti()
+}
+const scalar = 3
+const cat = confetti.shapeFromText({ text: '🐈', scalar })
+const rainbow = confetti.shapeFromText({ text: '🌈', scalar })
+const heart = confetti.shapeFromText({ text: '❤️', scalar })
+const pineapple = confetti.shapeFromText({ text: '🍍', scalar })
+const party = confetti.shapeFromText({ text: '🥳', scalar })
+const catFace = confetti.shapeFromText({ text: '😸', scalar })
+const dogFace = confetti.shapeFromText({ text: '🐶', scalar })
+const unicorn = confetti.shapeFromText({ text: '🦄', scalar })
+const frog = confetti.shapeFromText({ text: '🐸', scalar })
+const shapes = [
+  catFace,
+  rainbow,
+  unicorn,
+  party,
+  heart,
+  dogFace,
+  pineapple,
+  cat,
+  frog,
+]
+
+const confettiOptions = {
+  particleCount: 1000,
+  spread: 100,
+  origin: {
+    y: 0.7,
+  },
+  gravity: 0.7,
+  ticks: 200,
+}
+const confettiOptionsEmoji = {
+  particleCount: 500,
+  spread: 90,
+  origin: {
+    y: 0.7,
+  },
+  gravity: 1,
+  scalar: scalar,
+  shapes: [heart],
+  ticks: 100,
+}
+
+function chooseConfetti() {
+  const randomNum = getRandomInt(0, 10)
+  if (randomNum <= 2) {
+    confetti(confettiOptions)
+  } else {
+    confettiOptionsEmoji.shapes.pop()
+    const chooseShape = getRandomInt(0, shapes.length - 1)
+    confettiOptionsEmoji.shapes.push(shapes[chooseShape])
+    confetti(confettiOptionsEmoji)
+  }
 }
 
 function removeCompletedPair() {
