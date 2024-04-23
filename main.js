@@ -130,6 +130,7 @@ const confettiOptionsEmoji = {
   scalar: scalar,
   shapes: [heart],
   ticks: 100,
+  disableForReducedMotion: true,
 }
 
 function chooseConfetti() {
