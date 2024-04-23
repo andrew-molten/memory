@@ -217,12 +217,16 @@ init()
 //////////////////////////////////////////////
 function calculateTiles() {
   // Finds out which length is longer
-  const height = window.innerHeight
-  const width = window.innerWidth
+  // const height = window.innerHeight
+  const height = document.getElementsByTagName('body')[0].clientHeight
+  // const width = window.innerWidth
+  const width = document.getElementsByTagName('body')[0].clientWidth
   let shortWay
   let longWay
   height > width ? (shortWay = width) : (shortWay = height)
   height < width ? (longWay = width) : (longWay = height)
+  // console.log(clientHeight)
+  // console.log(clientWidth)
 
   // calculate length to fit
   const tileShort = shortWay / 3 - 20
