@@ -219,7 +219,7 @@ init()
 function calculateTiles() {
   // Finds out which length is longer
   // const height = window.innerHeight
-  const height = document.body.clientHeight - 50
+  const height = document.body.clientHeight
   // const width = window.innerWidth
   const width = document.body.clientWidth
   let shortWay
