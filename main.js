@@ -31,7 +31,7 @@ const images = [
 ]
 
 let preferences = {
-  tileNum: 12,
+  tileNum: 18,
 }
 
 function generateTilesDOM(tileNum) {
