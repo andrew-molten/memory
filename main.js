@@ -206,8 +206,9 @@ function init() {
   chooseImages(images, preferences.tileNum)
   assignTiles(preferences.tileNum)
   assignTileListeners()
+  manipulateConfettiPieces()
 }
-init()
+
 // assign tiles to random positions on the screen
 
 // check for a match & remove tile/ do a celebration
@@ -267,7 +268,6 @@ const confettiPieces = confettiContainer.children
 
 function confetti() {
   confettiContainer.classList.add('explosion')
-  manipulateConfettiPieces()
 
   confettiContainer.addEventListener(
     'animationend',
@@ -279,9 +279,25 @@ function confetti() {
 }
 
 function manipulateConfettiPieces() {
-  let x = 50
+  const height = document.body.clientHeight
+  const width = document.body.clientWidth
+  const maxHeight = 0.4 * height
+  const maxWidth = 0.8 * width
+  // console.log(maxWidth)
+  // let x = 0.2 * maxWidth
+  // let x = 25
+
   for (const piece of confettiPieces) {
-    piece.style = `transform: translateX(${x}px)`
-    x += 50
+    const offsetY = spread(maxHeight)
+    const offsetX = spread(maxWidth)
+    piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px`
+    // x += maxWidth / 50
+    // x += 25
   }
 }
+
+function spread(value) {
+  return value / 2 - getRandomInt(0, value)
+}
+
+init()

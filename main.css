@@ -3,12 +3,17 @@
 /* nice background */
 
 /* cool tile covers */
+/* :root {
+  --offsetX: 0;
+} */
+
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100vw;
+  /* overflow: hidden; */
 
   perspective: 1000px;
 }
@@ -40,6 +45,7 @@ img {
   align-content: space-evenly;
   flex-wrap: wrap;
   gap: 5px;
+  /* overflow: hidden; */
 
   /* confetti */
   /* transform-style: preserve-3d; */
@@ -75,10 +81,11 @@ img {
 
 @keyframes confettiSpread {
   25% {
-    translate: 0 -25vh;
+    translate: 0 -35vh;
   }
   100% {
     translate: 0 -25vh;
+    transform: translateX(var(--offsetX)) translateY(var(--offsetY));
   }
 }
 
