@@ -263,9 +263,11 @@ function adjustTileSize(tileWidth) {
 
 // Confetti
 const confettiContainer = document.querySelector('.confetti')
+const confettiPieces = confettiContainer.children
 
 function confetti() {
   confettiContainer.classList.add('explosion')
+  manipulateConfettiPieces()
 
   confettiContainer.addEventListener(
     'animationend',
@@ -274,4 +276,12 @@ function confetti() {
     },
     { once: true }
   )
+}
+
+function manipulateConfettiPieces() {
+  let x = 50
+  for (const piece of confettiPieces) {
+    piece.style = `transform: translateX(${x}px)`
+    x += 50
+  }
 }
