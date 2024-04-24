@@ -66,7 +66,6 @@ function assignTileListeners() {
 let lastClick = { src: '', id: '', clickNum: 2, completedPair: false }
 
 function handleClick(e) {
-  confetti()
   const id = e.target.closest('.tile').id
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
@@ -90,6 +89,7 @@ function completedPair(tile) {
   tile.children[0].classList.remove('hidden')
   lastClick.clickNum++
   lastClick.completedPair = true
+  confetti()
   // chooseConfetti()
 }
 
@@ -206,6 +206,7 @@ function init() {
   chooseImages(images, preferences.tileNum)
   assignTiles(preferences.tileNum)
   assignTileListeners()
+  createConfettiPieces(150)
   manipulateConfettiPieces()
 }
 
@@ -268,30 +269,48 @@ const confettiPieces = confettiContainer.children
 
 function confetti() {
   confettiContainer.classList.add('explosion')
+  confettiContainer.classList.remove('hidden')
 
   confettiContainer.addEventListener(
     'animationend',
     () => {
       confettiContainer.classList.remove('explosion')
+      confettiContainer.classList.add('hidden')
     },
     { once: true }
   )
 }
 
+function createConfettiPieces(numPieces) {
+  for (let i = 0; i < numPieces; i++) {
+    confettiContainer.innerHTML += `<span></span>`
+  }
+}
+
 function manipulateConfettiPieces() {
   const height = document.body.clientHeight
   const width = document.body.clientWidth
-  const maxHeight = 0.4 * height
-  const maxWidth = 0.8 * width
-  // console.log(maxWidth)
-  // let x = 0.2 * maxWidth
+  const maxHeightSpread = 0.35 * height
+  const maxWidthSpread = 0.8 * width
+  const maxWidth = 20
+  const minWidth = 5
+  const shape = 0.5 // 0 =circles, .5 = mix, 1 =squares
+  let baseHue = 1 // 1 to 360
+  let hueVariation = 360 // 1 = no variation, 360 - max
+  // console.log(maxWidthSpread)
+  // let x = 0.2 * maxWidthSpread
   // let x = 25
 
   for (const piece of confettiPieces) {
-    const offsetY = spread(maxHeight)
-    const offsetX = spread(maxWidth)
-    piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px`
-    // x += maxWidth / 50
+    console.log((Math.random() - shape) * width)
+    const offsetY = spread(maxHeightSpread)
+    const offsetX = spread(maxWidthSpread)
+    const hue = baseHue + spread(hueVariation)
+    const confettiSize = getRandomInt(minWidth, maxWidth)
+    piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px; --hue: ${hue}; --confetti-size: ${confettiSize}px; --shape: ${
+      (Math.random() - shape) * width
+    }px;`
+    // x += maxWidthSpread / 50
     // x += 25
   }
 }

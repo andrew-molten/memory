@@ -66,9 +66,10 @@ img {
 
 .confetti > span {
   position: absolute;
-  width: 25px;
+  width: var(--confetti-size);
+  border-radius: var(--shape);
   aspect-ratio: 1;
-  background: orangered;
+  background: hsl(var(--hue) 100% 50%);
 }
 
 .explosion > span {
