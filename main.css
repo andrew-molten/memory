@@ -48,7 +48,7 @@ img {
   /* overflow: hidden; */
 
   /* confetti */
-  /* transform-style: preserve-3d; */
+  transform-style: preserve-3d;
 }
 
 .hidden {
@@ -57,11 +57,9 @@ img {
 
 .confetti {
   position: absolute;
-  /* background: yellow; */
-  /* width: 10px;
-  height: 10px; */
   inset: 50%;
   z-index: 10;
+  transform-style: preserve-3d;
 }
 
 .confetti > span {
@@ -82,16 +80,22 @@ img {
 
 @keyframes confettiSpread {
   25% {
-    translate: 0 -35vh;
+    translate: 0 -45vh;
   }
   100% {
-    translate: 0 -25vh;
-    transform: translateX(var(--offsetX)) translateY(var(--offsetY));
+    translate: 0 -45vh;
+    transform: translateX(var(--offsetX)) translateY(var(--offsetY))
+      translateZ(var(--offsetZ)) rotateX(var(--spin));
   }
 }
+/*  */
 
 @keyframes confettiSettle {
+  70% {
+    opacity: 1;
+  }
   100% {
-    transform: translateY(50vh);
+    transform: translateY(60vh);
+    opacity: 0;
   }
 }

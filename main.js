@@ -208,6 +208,7 @@ function init() {
   assignTileListeners()
   createConfettiPieces(150)
   manipulateConfettiPieces()
+  confetti()
 }
 
 // assign tiles to random positions on the screen
@@ -295,6 +296,8 @@ function manipulateConfettiPieces() {
   const maxWidth = 20
   const minWidth = 5
   const shape = 0.5 // 0 =circles, .5 = mix, 1 =squares
+  const maxDepth = 500
+  const maxSpin = 10
   let baseHue = 1 // 1 to 360
   let hueVariation = 360 // 1 = no variation, 360 - max
   // console.log(maxWidthSpread)
@@ -302,16 +305,15 @@ function manipulateConfettiPieces() {
   // let x = 25
 
   for (const piece of confettiPieces) {
-    console.log((Math.random() - shape) * width)
     const offsetY = spread(maxHeightSpread)
     const offsetX = spread(maxWidthSpread)
     const hue = baseHue + spread(hueVariation)
     const confettiSize = getRandomInt(minWidth, maxWidth)
+    const offsetZ = spread(maxDepth)
+    const spin = getRandomInt(0, maxSpin)
     piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px; --hue: ${hue}; --confetti-size: ${confettiSize}px; --shape: ${
       (Math.random() - shape) * width
-    }px;`
-    // x += maxWidthSpread / 50
-    // x += 25
+    }px; --offsetZ: ${offsetZ}px; --spin: ${spin}turn`
   }
 }
 
