@@ -82,11 +82,9 @@ img {
   }
   100% {
     translate: 0 -40vh;
-    transform: translateX(var(--offsetX)) translateY(var(--offsetY));
+    transform: translateX(var(--offsetX)) translateY(var(--offsetY))
+      translateZ(var(--offsetZ)) rotateX(var(--spin)) rotateY(var(--spinY));
     /* add dynamics to confetti pieces */
-    /* translateZ(var(--offsetZ)); */
-    /* rotateX(var(--spin)); */
-    /* rotateY(var(--spinY));  */
   }
 }
 
@@ -95,11 +93,26 @@ img {
   30% {
     opacity: 1;
   }
-  /* 80% {
+  80% {
     opacity: 0;
-  } */
+  }
   100% {
     transform: translateY(60vh); /* How low the confetti falls */
-    /* opacity: 0; */
+    opacity: 0;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  @keyframes confettiSpread {
+    25% {
+      translate: 0 -10vh; /* How high confetti pops */
+    }
+    100% {
+      translate: 0 -10vh;
+      transform: translateX(var(--offsetX)) translateY(var(--offsetY))
+        translateZ(var(--offsetZ)) rotateX(var(--spin)) rotateY(var(--spinY));
+      /* add dynamics to confetti pieces */
+    }
   }
 }
