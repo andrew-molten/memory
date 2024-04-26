@@ -302,24 +302,21 @@ function manipulateConfettiPieces() {
   const confettiPieces = confettiContainer.children
   const height = document.body.clientHeight
   const width = document.body.clientWidth
-  const maxHeightSpread = 0.7 * height
-  const maxWidthSpread = 0.8 * width
-  const maxWidth = 8
-  const minWidth = 2
+  const maxHeightSpread = 0.5 * height
+  const maxWidthSpread = 1 * width
+  const maxShapeWidth = 8
+  const minShapeWidth = 2
   const shape = 0.5 // 0 =circles, .5 = mix, 1 =squares
   const maxDepth = 500
   const maxSpin = 10
   let baseHue = 1 // 1 to 360
   let hueVariation = 360 // 1 = no variation, 360 - max
-  // console.log(maxWidthSpread)
-  // let x = 0.2 * maxWidthSpread
-  // let x = 25
 
   for (const piece of confettiPieces) {
     const offsetY = spread(maxHeightSpread)
     const offsetX = spread(maxWidthSpread)
     const hue = baseHue + spread(hueVariation)
-    const confettiSize = getRandomInt(minWidth, maxWidth)
+    const confettiSize = getRandomInt(minShapeWidth, maxShapeWidth)
     const offsetZ = spread(maxDepth)
     const spin = getRandomInt(0, maxSpin)
     const spinY = getRandomInt(0, maxSpin)
