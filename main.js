@@ -268,22 +268,15 @@ function adjustTileSize(tileWidth) {
 
 function confetti() {
   const confettiContainer = document.querySelector('.confetti')
-  const confettiPieces = confettiContainer.children
 
   confettiContainer.classList.add('explosion')
   confettiContainer.classList.remove('hidden')
-  for (const piece of confettiPieces) {
-    piece.classList.remove('hidden')
-  }
 
   confettiContainer.addEventListener(
     'animationend',
     () => {
       confettiContainer.classList.remove('explosion')
       confettiContainer.classList.add('hidden')
-      for (const piece of confettiPieces) {
-        piece.classList.add('hidden')
-      }
     },
     { once: true }
   )
@@ -298,11 +291,10 @@ function createConfettiPieces(numPieces) {
 
 function manipulateConfettiPieces() {
   const confettiContainer = document.querySelector('.confetti')
-
   const confettiPieces = confettiContainer.children
   const height = document.body.clientHeight
   const width = document.body.clientWidth
-  const maxHeightSpread = 0.5 * height
+  const maxHeightSpread = 0.4 * height
   const maxWidthSpread = 1 * width
   const maxShapeWidth = 8
   const minShapeWidth = 2

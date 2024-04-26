@@ -69,11 +69,11 @@ img {
 }
 
 .explosion > span {
-  animation: confettiSpread 6s cubic-bezier(0, 1, 1, 1); /* pop quick, drop slow */
+  animation: confettiSpread 7s cubic-bezier(0, 1, 1, 1); /* pop quick, drop slow */
 }
 
 .explosion {
-  animation: confettiSettle 6s;
+  animation: confettiSettle 7s;
 }
 
 @keyframes confettiSpread {
@@ -83,8 +83,8 @@ img {
   100% {
     translate: 0 -40vh;
     transform: translateX(var(--offsetX)) translateY(var(--offsetY))
-      /* add dynamics to confetti pieces */ translateZ(var(--offsetZ))
-      rotateX(var(--spin));
+      /* add dynamics to confetti pieces */ translateZ(var(--offsetZ));
+    /* rotateX(var(--spin)); */
     /* rotateY(var(--spinY));  */
   }
 }
@@ -94,11 +94,11 @@ img {
   30% {
     opacity: 1;
   }
-  80% {
+  /* 80% {
     opacity: 0;
-  }
+  } */
   100% {
     transform: translateY(60vh); /* How low the confetti falls */
-    opacity: 0;
+    /* opacity: 0; */
   }
 }
