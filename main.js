@@ -302,7 +302,7 @@ function manipulateConfettiPieces() {
   const confettiPieces = confettiContainer.children
   const height = document.body.clientHeight
   const width = document.body.clientWidth
-  const maxHeightSpread = 0.35 * height
+  const maxHeightSpread = 0.7 * height
   const maxWidthSpread = 0.8 * width
   const maxWidth = 8
   const minWidth = 2
