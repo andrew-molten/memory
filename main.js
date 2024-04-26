@@ -41,11 +41,11 @@ let preferences = {
 
 function generateTilesDOM(tileNum) {
   const individualTileMarkup = `<div class="tile"></div>`
-  let totalTileMarkup = ''
+  let containerMarkup = '<span class="confetti hidden"> </span>'
   for (let i = 0; i < tileNum; i++) {
-    totalTileMarkup += individualTileMarkup
+    containerMarkup += individualTileMarkup
   }
-  container.innerHTML = totalTileMarkup
+  container.innerHTML = containerMarkup
 }
 
 const tilesDOM = document.getElementsByClassName('tile')
@@ -206,7 +206,7 @@ function init() {
   chooseImages(images, preferences.tileNum)
   assignTiles(preferences.tileNum)
   assignTileListeners()
-  createConfettiPieces(150)
+  createConfettiPieces(300)
   manipulateConfettiPieces()
   confetti()
 }
@@ -265,36 +265,47 @@ function adjustTileSize(tileWidth) {
 }
 
 // Confetti
-const confettiContainer = document.querySelector('.confetti')
-const confettiPieces = confettiContainer.children
 
 function confetti() {
+  const confettiContainer = document.querySelector('.confetti')
+  const confettiPieces = confettiContainer.children
+
   confettiContainer.classList.add('explosion')
   confettiContainer.classList.remove('hidden')
+  for (const piece of confettiPieces) {
+    piece.classList.remove('hidden')
+  }
 
   confettiContainer.addEventListener(
     'animationend',
     () => {
       confettiContainer.classList.remove('explosion')
       confettiContainer.classList.add('hidden')
+      for (const piece of confettiPieces) {
+        piece.classList.add('hidden')
+      }
     },
     { once: true }
   )
 }
 
 function createConfettiPieces(numPieces) {
+  const confettiContainer = document.querySelector('.confetti')
   for (let i = 0; i < numPieces; i++) {
     confettiContainer.innerHTML += `<span></span>`
   }
 }
 
 function manipulateConfettiPieces() {
+  const confettiContainer = document.querySelector('.confetti')
+
+  const confettiPieces = confettiContainer.children
   const height = document.body.clientHeight
   const width = document.body.clientWidth
   const maxHeightSpread = 0.35 * height
   const maxWidthSpread = 0.8 * width
-  const maxWidth = 20
-  const minWidth = 5
+  const maxWidth = 8
+  const minWidth = 2
   const shape = 0.5 // 0 =circles, .5 = mix, 1 =squares
   const maxDepth = 500
   const maxSpin = 10
@@ -311,9 +322,10 @@ function manipulateConfettiPieces() {
     const confettiSize = getRandomInt(minWidth, maxWidth)
     const offsetZ = spread(maxDepth)
     const spin = getRandomInt(0, maxSpin)
+    const spinY = getRandomInt(0, maxSpin)
     piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px; --hue: ${hue}; --confetti-size: ${confettiSize}px; --shape: ${
       (Math.random() - shape) * width
-    }px; --offsetZ: ${offsetZ}px; --spin: ${spin}turn`
+    }px; --offsetZ: ${offsetZ}px; --spin: ${spin}turn; --spinY: ${spinY}turn`
   }
 }
 

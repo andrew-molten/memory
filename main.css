@@ -30,9 +30,6 @@ img {
 
 .tile {
   background-color: rgb(254, 104, 197);
-  /* height: 100px;
-  width: 100px; */
-  /* margin: 5px; */
   overflow: hidden;
 }
 
@@ -45,10 +42,10 @@ img {
   align-content: space-evenly;
   flex-wrap: wrap;
   gap: 5px;
-  /* overflow: hidden; */
 
   /* confetti */
   transform-style: preserve-3d;
+  overflow: hidden;
 }
 
 .hidden {
@@ -71,31 +68,34 @@ img {
 }
 
 .explosion > span {
-  animation: confettiSpread 10s;
+  animation: confettiSpread 6s cubic-bezier(0, 1.1, 1, 1);
 }
 
 .explosion {
-  animation: confettiSettle 10s;
+  animation: confettiSettle 6s;
 }
 
 @keyframes confettiSpread {
   25% {
-    translate: 0 -45vh;
+    translate: 0 -40vh;
   }
   100% {
-    translate: 0 -45vh;
+    translate: 0 -40vh;
     transform: translateX(var(--offsetX)) translateY(var(--offsetY))
-      translateZ(var(--offsetZ)) rotateX(var(--spin));
+      translateZ(var(--offsetZ)) rotateX(var(--spin)) rotateY(var(--spinY));
   }
 }
-/*  */
 
 @keyframes confettiSettle {
-  70% {
+  0%,
+  30% {
     opacity: 1;
   }
+  80% {
+    opacity: 0;
+  }
   100% {
-    transform: translateY(60vh);
+    transform: translateY(80vh);
     opacity: 0;
   }
 }
