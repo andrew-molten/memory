@@ -82,8 +82,9 @@ img {
   }
   100% {
     translate: 0 -40vh;
-    transform: translateX(var(--offsetX)) translateY(var(--offsetY))
-      /* add dynamics to confetti pieces */ translateZ(var(--offsetZ));
+    transform: translateX(var(--offsetX)) translateY(var(--offsetY));
+    /* add dynamics to confetti pieces */
+    /* translateZ(var(--offsetZ)); */
     /* rotateX(var(--spin)); */
     /* rotateY(var(--spinY));  */
   }

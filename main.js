@@ -314,9 +314,11 @@ function manipulateConfettiPieces() {
     const spinY = getRandomInt(0, maxSpin)
     piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px; --hue: ${hue}; --confetti-size: ${confettiSize}px; --shape: ${
       (Math.random() - shape) * width
-    }px; --offsetZ: ${offsetZ}px; --spin: ${spin}turn; --spinY: ${spinY}turn`
+    }px;`
   }
 }
+
+//  --offsetZ: ${offsetZ}px; --spin: ${spin}turn; --spinY: ${spinY}turn
 
 function spread(value) {
   return value / 2 - getRandomInt(0, value)
