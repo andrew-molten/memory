@@ -208,7 +208,7 @@ function init() {
   assignTileListeners()
   createConfettiPieces(300)
   manipulateConfettiPieces()
-  confetti()
+  // confetti()
 }
 
 // assign tiles to random positions on the screen
@@ -295,6 +295,7 @@ function manipulateConfettiPieces() {
   const height = document.body.clientHeight
   const width = document.body.clientWidth
   const maxHeightSpread = 0.4 * height
+  const maxHeightMiddle = 0.3 * height
   const maxWidthSpread = 1 * width
   const maxShapeWidth = 8
   const minShapeWidth = 2
@@ -305,11 +306,13 @@ function manipulateConfettiPieces() {
   let hueVariation = 360 // 1 = no variation, 360 - max
 
   for (const piece of confettiPieces) {
-    const offsetY = spread(maxHeightSpread)
-    const offsetX = spread(maxWidthSpread)
-    const hue = baseHue + spread(hueVariation)
+    const offsetX = spread(0, maxWidthSpread)
+    // const offsetY = spread(0, maxHeightSpread)
+    const offsetY = spreadWide(offsetX, width, maxHeightSpread, maxHeightMiddle)
+    // console.log(offsetX)
+    const hue = baseHue + spread(0, hueVariation)
     const confettiSize = getRandomInt(minShapeWidth, maxShapeWidth)
-    const offsetZ = spread(maxDepth)
+    const offsetZ = spread(0, maxDepth)
     const spin = getRandomInt(0, maxSpin)
     const spinY = getRandomInt(0, maxSpin)
     piece.style = `--offsetX: ${offsetX}px; --offsetY: ${offsetY}px; --hue: ${hue}; --confetti-size: ${confettiSize}px; --shape: ${
@@ -318,8 +321,20 @@ function manipulateConfettiPieces() {
   }
 }
 
-function spread(value) {
-  return value / 2 - getRandomInt(0, value)
+function spread(middle, value) {
+  return value / 2 - getRandomInt(middle, value)
+}
+
+function spreadWide(offsetX, width, maxHeightSpread, maxHeightMiddle) {
+  if (offsetX < -0.9 * (width / 2) || offsetX > 0.9 * (width / 2)) {
+    return spread(0, maxHeightSpread)
+  } else if (offsetX < -0.8 * (width / 2) || offsetX > 0.8 * (width / 2)) {
+    return spread(0, maxHeightSpread) - 0.1 * maxHeightSpread
+  } else if (offsetX < -0.7 * (width / 2) || offsetX > 0.7 * (width / 2)) {
+    return spread(0, maxHeightSpread)
+  } else if (offsetX < -0.5 * (width / 2) || offsetX > 0.5 * (width / 2)) {
+    return spread(0, maxHeightSpread) - 0.2 * maxHeightSpread
+  } else return spread(0, maxHeightMiddle) - 0.3 * maxHeightSpread
 }
 
 init()

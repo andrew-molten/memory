@@ -69,11 +69,11 @@ img {
 }
 
 .explosion > span {
-  animation: confettiSpread 7s cubic-bezier(0, 1, 1, 1); /* pop quick, drop slow */
+  animation: confettiSpread 6s cubic-bezier(0, 1, 1, 1); /* pop quick, drop slow */
 }
 
 .explosion {
-  animation: confettiSettle 7s;
+  animation: confettiSettle 6s;
 }
 
 @keyframes confettiSpread {
