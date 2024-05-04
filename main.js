@@ -93,40 +93,6 @@ function completedPair(tile) {
   // chooseConfetti()
 }
 
-//////////////////////////////////////////////
-///////////////  CONFETTI  ///////////////////
-//////////////////////////////////////////////
-// const scalar = 2.5
-// const rainbow = confetti.shapeFromText({ text: '🌈', scalar })
-// const heart = confetti.shapeFromText({ text: '❤️', scalar })
-// const unicorn = confetti.shapeFromText({ text: '🦄', scalar })
-
-// const confettiOptions = {
-//   particleCount: 1000,
-//   spread: 100,
-//   origin: {
-//     y: 0.7,
-//   },
-//   gravity: 0.7,
-//   ticks: 200,
-// }
-// const confettiOptionsEmoji = {
-//   particleCount: 400,
-//   spread: 90,
-//   origin: {
-//     y: 0.7,
-//   },
-//   gravity: 1,
-//   scalar: scalar,
-//   shapes: [heart, rainbow, unicorn],
-//   ticks: 100,
-// }
-
-// function chooseConfetti() {
-//   const randomNum = getRandomInt(1, 2)
-//   randomNum === 1 ? confetti(confettiOptions) : confetti(confettiOptionsEmoji)
-// }
-
 function removeCompletedPair() {
   const tile = document.getElementById(lastClick.id)
   const src = tile.children[0].src
@@ -264,7 +230,9 @@ function adjustTileSize(tileWidth) {
   }
 }
 
-// Confetti
+//////////////////////////////////////////////
+///////////////  CONFETTI  ///////////////////
+//////////////////////////////////////////////
 
 function confetti() {
   const confettiContainer = document.querySelector('.confetti')
@@ -307,9 +275,7 @@ function manipulateConfettiPieces() {
 
   for (const piece of confettiPieces) {
     const offsetX = spread(0, maxWidthSpread)
-    // const offsetY = spread(0, maxHeightSpread)
     const offsetY = spreadWide(offsetX, width, maxHeightSpread, maxHeightMiddle)
-    // console.log(offsetX)
     const hue = baseHue + spread(0, hueVariation)
     const confettiSize = getRandomInt(minShapeWidth, maxShapeWidth)
     const offsetZ = spread(0, maxDepth)
