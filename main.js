@@ -71,7 +71,7 @@ function handleClick(e) {
   const tile = document.getElementById(id)
   if (lastClick.clickNum === 2) {
     if (lastClick.completedPair === true) {
-      removeCompletedPair()
+      // removeCompletedPair()
     } else hideAll()
     assignLastClick(src, id)
     lastClick.clickNum = 1
@@ -90,7 +90,7 @@ function completedPair(tile) {
   lastClick.clickNum++
   lastClick.completedPair = true
   confetti()
-  // chooseConfetti()
+  removeCompletedPair()
 }
 
 function removeCompletedPair() {
@@ -99,8 +99,11 @@ function removeCompletedPair() {
   for (const image of tilesDOM) {
     if (image.children.length > 0) {
       if (src === image.children[0].src) {
-        image.innerHTML = ''
-        image.classList.add('hidden')
+        image.classList.add('fadeout') // fade out
+        setTimeout(() => {
+          image.innerHTML = ''
+          image.classList.add('hidden')
+        }, 2000)
       }
     }
   }
@@ -302,5 +305,8 @@ function spreadWide(offsetX, width, maxHeightSpread, maxHeightMiddle) {
     return spread(0, maxHeightSpread) - 0.2 * maxHeightSpread
   } else return spread(0, maxHeightMiddle) - 0.3 * maxHeightSpread
 }
+
+// add a score function
+// add a rest button at the end
 
 init()

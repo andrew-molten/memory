@@ -52,6 +52,11 @@ img {
   visibility: hidden;
 }
 
+.fadeout {
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
 .confetti {
   position: absolute;
   inset: 50%;
