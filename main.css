@@ -28,8 +28,12 @@ img {
   transform: translate(-50%, -50%);
 }
 
+h1 {
+  color: #00e2fb;
+}
+
 .tile {
-  background-color: rgb(254, 104, 197);
+  background-color: #fe68c5;
   overflow: hidden;
 }
 
@@ -46,6 +50,11 @@ img {
   /* confetti */
   transform-style: preserve-3d;
   overflow: hidden;
+}
+
+.block {
+  display: block;
+  text-align: center;
 }
 
 .hidden {
@@ -71,6 +80,16 @@ img {
   border-radius: var(--shape);
   aspect-ratio: 1;
   background: hsl(var(--hue) 100% 50%);
+}
+
+.reset-btn {
+  padding: 1.4em 2.4em;
+  border-radius: 1.8em;
+  border: none;
+  font-size: large;
+  font-weight: 700;
+  color: #0e0078;
+  background-color: #ff43b7;
 }
 
 .explosion > span {

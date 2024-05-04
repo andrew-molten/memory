@@ -39,7 +39,9 @@ let preferences = {
   tileNum: 14,
 }
 
-let pairsFound = 0
+let pairMatches = 0
+// let tilesDOM
+let playingImages = []
 
 function generateTilesDOM(tileNum) {
   const individualTileMarkup = `<div class="tile"></div>`
@@ -51,8 +53,6 @@ function generateTilesDOM(tileNum) {
 }
 
 const tilesDOM = document.getElementsByClassName('tile')
-let playingImages = []
-// let tileNum = 18
 
 function giveIDsToDom() {
   for (let i = 0; i < tilesDOM.length; i++) {
@@ -91,6 +91,7 @@ function completedPair(tile) {
   lastClick.completedPair = true
   confetti()
   removeCompletedPair()
+  countMatches()
 }
 
 function removeCompletedPair() {
@@ -179,10 +180,28 @@ function init() {
   manipulateConfettiPieces()
 }
 
-function checkEndGame() {}
+function endGame() {
+  const congratsMessage = `<h1>Well done! You got all ${pairMatches} pairs!</h1> <p><button class="reset-btn" id="reset-btn">Reset</button></p>`
+  container.classList.add('block')
+  container.innerHTML = congratsMessage
+  const resetBtn = document.getElementById('reset-btn')
+  resetBtn.addEventListener('click', resetGame)
+}
 
-function countMatches() {}
-// count matches
+function resetGame() {
+  container.innerHTML = ''
+  container.classList.remove('block')
+  playingImages = []
+  pairMatches = 0
+  init()
+}
+
+function countMatches() {
+  if (++pairMatches === preferences.tileNum / 2) {
+    setTimeout(endGame, 2000)
+  }
+}
+// display match count
 
 //////////////////////////////////////////////
 ///////////////  TILE SIZE ///////////////////
@@ -302,8 +321,5 @@ function spreadWide(offsetX, width, maxHeightSpread, maxHeightMiddle) {
     return spread(0, maxHeightSpread) - 0.2 * maxHeightSpread
   } else return spread(0, maxHeightMiddle) - 0.3 * maxHeightSpread
 }
-
-// add a score function
-// add a rest button at the end
 
 init()
