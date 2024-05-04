@@ -32,6 +32,12 @@ h1 {
   color: #00e2fb;
 }
 
+h2 {
+  color: #0e0078;
+  font-size: 5em;
+  margin-top: 0.1em;
+}
+
 .tile {
   background-color: #fe68c5;
   overflow: hidden;
@@ -63,7 +69,12 @@ h1 {
 
 .fadeout {
   opacity: 0;
-  transition: opacity 2s linear;
+  transition: opacity 1.5s linear;
+}
+
+.fadein {
+  opacity: 1;
+  transition: opacity 1.5s linear;
 }
 
 .confetti {
@@ -88,8 +99,13 @@ h1 {
   border: none;
   font-size: large;
   font-weight: 700;
-  color: #0e0078;
   background-color: #ff43b7;
+}
+
+.counter {
+  text-align: center;
+  background-color: #f5bd00;
+  border-radius: 50%;
 }
 
 .explosion > span {

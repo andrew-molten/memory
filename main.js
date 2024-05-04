@@ -42,6 +42,8 @@ let preferences = {
 let pairMatches = 0
 // let tilesDOM
 let playingImages = []
+let scoreCountingTile
+let lastScoreCountingTile
 
 function generateTilesDOM(tileNum) {
   const individualTileMarkup = `<div class="tile"></div>`
@@ -71,7 +73,9 @@ function handleClick(e) {
   const id = e.target.closest('.tile').id
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
+  if (tile.classList.contains('counter')) return
   if (lastClick.clickNum === 2) {
+    // checks if click starts new pair
     hideAll()
     assignLastClick(src, id)
     lastClick.clickNum = 1
@@ -91,7 +95,7 @@ function completedPair(tile) {
   lastClick.completedPair = true
   confetti()
   removeCompletedPair()
-  countMatches()
+  countMatches(tile)
 }
 
 function removeCompletedPair() {
@@ -104,7 +108,7 @@ function removeCompletedPair() {
         setTimeout(() => {
           image.innerHTML = ''
           image.classList.add('hidden')
-        }, 2000)
+        }, 1500)
       }
     }
   }
@@ -120,7 +124,8 @@ function assignLastClick(src, id) {
 
 function hideAll() {
   for (const tile of tilesDOM) {
-    tile.children.length > 0 ? tile.children[0].classList.add('hidden') : ''
+    if (tile.children.length > 0 && !tile.classList.contains('counter'))
+      tile.children[0].classList.add('hidden')
   }
 }
 
@@ -184,6 +189,9 @@ function endGame() {
   const congratsMessage = `<h1>Well done! You got all ${pairMatches} pairs!</h1> <p><button class="reset-btn" id="reset-btn">Reset</button></p>`
   container.classList.add('block')
   container.innerHTML = congratsMessage
+  confetti()
+  setTimeout(confetti, 1100)
+  setTimeout(confetti, 3000)
   const resetBtn = document.getElementById('reset-btn')
   resetBtn.addEventListener('click', resetGame)
 }
@@ -196,12 +204,33 @@ function resetGame() {
   init()
 }
 
-function countMatches() {
+function countMatches(tile) {
   if (++pairMatches === preferences.tileNum / 2) {
     setTimeout(endGame, 2000)
+  } else {
+    displayScoreCounter(tile)
   }
 }
-// display match count
+
+function displayScoreCounter(tile) {
+  lastScoreCountingTile = scoreCountingTile
+  if (scoreCountingTile) {
+    lastScoreCountingTile.classList.remove('fadein')
+    lastScoreCountingTile.classList.add('fadeout')
+    setTimeout(() => {
+      lastScoreCountingTile.classList.add('hidden')
+    }, 1500)
+  }
+
+  setTimeout(() => {
+    scoreCountingTile = document.getElementById(tile.id)
+    scoreCountingTile.classList.remove('hidden')
+    scoreCountingTile.classList.remove('fadeout')
+    scoreCountingTile.classList.add('fadein')
+    scoreCountingTile.classList.add('counter')
+    scoreCountingTile.innerHTML = `<h2>${pairMatches}</h2>`
+  }, 1600)
+}
 
 //////////////////////////////////////////////
 ///////////////  TILE SIZE ///////////////////
