@@ -39,6 +39,8 @@ let preferences = {
   tileNum: 14,
 }
 
+let pairsFound = 0
+
 function generateTilesDOM(tileNum) {
   const individualTileMarkup = `<div class="tile"></div>`
   let containerMarkup = '<span class="confetti hidden"> </span>'
@@ -70,9 +72,7 @@ function handleClick(e) {
   const src = e.target.children[0].src
   const tile = document.getElementById(id)
   if (lastClick.clickNum === 2) {
-    if (lastClick.completedPair === true) {
-      // removeCompletedPair()
-    } else hideAll()
+    hideAll()
     assignLastClick(src, id)
     lastClick.clickNum = 1
     tile.children[0].classList.remove('hidden')
@@ -177,21 +177,18 @@ function init() {
   assignTileListeners()
   createConfettiPieces(300)
   manipulateConfettiPieces()
-  // confetti()
 }
 
-// assign tiles to random positions on the screen
+function checkEndGame() {}
 
-// check for a match & remove tile/ do a celebration
-
+function countMatches() {}
 // count matches
 
 //////////////////////////////////////////////
 ///////////////  TILE SIZE ///////////////////
 //////////////////////////////////////////////
 function calculateTiles() {
-  // Finds out which length is longer
-
+  // Which length is longer
   const height = document.body.clientHeight
   const width = document.body.clientWidth
   let shortWay
@@ -204,7 +201,7 @@ function calculateTiles() {
   const tileLong = longWay / 5 - 30 // number of lines in each direction 5 & 3
   const squareScreenTile = longWay / 4 - 25
 
-  // assigns tile nsize to fit viewport
+  // give tiles size to fit vp
   if (shortWay > 0.85 * longWay) {
     adjustTileSize(squareScreenTile) // square screen
   } else {
