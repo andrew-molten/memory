@@ -192,12 +192,13 @@ function confettiInit() {
 
 function endGame() {
   const congratsMessage = `<span class="confetti hidden"> </span><h1>Well done! You got all ${pairMatches} pairs!</h1> <p><button class="reset-btn" id="reset-btn">Reset</button></p>`
-  confettiInit()
   container.classList.add('block')
   container.innerHTML = congratsMessage
+  confettiInit()
   confetti()
-  setTimeout(confetti, 1100)
-  setTimeout(confetti, 3000)
+  setTimeout(() => {
+    confetti()
+  }, 3000)
   const resetBtn = document.getElementById('reset-btn')
   resetBtn.addEventListener('click', resetGame)
 }
