@@ -37,6 +37,7 @@ const images = [
 
 let preferences = {
   tileNum: 14,
+  confettiPieces: 300,
 }
 
 let pairMatches = 0
@@ -181,12 +182,17 @@ function init() {
   chooseImages(images, preferences.tileNum)
   assignTiles(preferences.tileNum)
   assignTileListeners()
-  createConfettiPieces(300)
+  confettiInit()
+}
+
+function confettiInit() {
+  createConfettiPieces(preferences.confettiPieces)
   manipulateConfettiPieces()
 }
 
 function endGame() {
-  const congratsMessage = `<h1>Well done! You got all ${pairMatches} pairs!</h1> <p><button class="reset-btn" id="reset-btn">Reset</button></p>`
+  const congratsMessage = `<span class="confetti hidden"> </span><h1>Well done! You got all ${pairMatches} pairs!</h1> <p><button class="reset-btn" id="reset-btn">Reset</button></p>`
+  confettiInit()
   container.classList.add('block')
   container.innerHTML = congratsMessage
   confetti()
