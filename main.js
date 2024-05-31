@@ -33,6 +33,33 @@ const images = [
   { location: 'images/memory/sheep.jpg' },
   { location: 'images/memory/tilo.jpg' },
   { location: 'images/memory/triceratops.png' },
+  { location: 'images/memory/ana-mala.jpg' },
+  { location: 'images/memory/anna-babymala.jpg' },
+  { location: 'images/memory/babymala-papa.jpg' },
+  { location: 'images/memory/elemental.jpg' },
+  { location: 'images/memory/hats.jpg' },
+  { location: 'images/memory/jumping.jpg' },
+  { location: 'images/memory/kitty.png' },
+  { location: 'images/memory/lothar-mala.jpg' },
+  { location: 'images/memory/mala-anna-rainbow.jpg' },
+  { location: 'images/memory/mala-martha-paul.jpg' },
+  { location: 'images/memory/Mala-martha.jpg' },
+  { location: 'images/memory/mala-norway.jpg' },
+  { location: 'images/memory/mala-omi-play.jpg' },
+  { location: 'images/memory/mala-sea.jpg' },
+  { location: 'images/memory/mala-shoe-mouth.jpg' },
+  { location: 'images/memory/Mala-stellan.jpg' },
+  { location: 'images/memory/mala-sunglasses.jpg' },
+  { location: 'images/memory/mala-tui.jpg' },
+  { location: 'images/memory/megs-mala-auck.jpg' },
+  { location: 'images/memory/mirabel.jpg' },
+  { location: 'images/memory/nemo.jpg' },
+  { location: 'images/memory/oma-mala-bike.jpg' },
+  { location: 'images/memory/ponyo-boat.jpg' },
+  { location: 'images/memory/ponyo-fish.jpg' },
+  { location: 'images/memory/Ruffles.png' },
+  { location: 'images/memory/Tilo-ute-mala.jpg' },
+  { location: 'images/memory/totoro.jpg' },
 ]
 
 let preferences = {
@@ -134,7 +161,7 @@ function hideAll() {
 function chooseImages(imageSet, tileNum) {
   const imageNum = tileNum / 2
   for (let i = 0; i < imageNum; i++) {
-    chooseImage(imageSet, tileNum)
+    chooseImage(imageSet, images.length - 1)
   }
 }
 
